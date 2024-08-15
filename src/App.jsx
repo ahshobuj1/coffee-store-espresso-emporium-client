@@ -1,8 +1,8 @@
-import {Link, NavLink, Outlet} from 'react-router-dom';
+import {NavLink, Outlet} from 'react-router-dom';
 
 function App() {
     return (
-        <>
+        <div className="max-w-7xl mx-auto">
             <div className="flex p-5 space-x-10">
                 <NavLink to="/coffees" className="btn btn-neutral">
                     Coffee
@@ -12,7 +12,7 @@ function App() {
                 </NavLink>
             </div>
             <Outlet />
-        </>
+        </div>
     );
 }
 
