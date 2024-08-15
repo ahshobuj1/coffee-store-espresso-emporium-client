@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddCoffee = () => {
     const handleNewCoffee = (e) => {
@@ -30,6 +31,17 @@ const AddCoffee = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                if (data.insertedId) {
+                    //sweet alert2
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Do you want to continue',
+                        icon: 'success',
+                        confirmButtonText: 'Cool',
+                    });
+
+                    form.reset();
+                }
             });
     };
 
