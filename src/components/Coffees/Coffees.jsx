@@ -1,8 +1,10 @@
 import {Link, useLoaderData} from 'react-router-dom';
 import Coffee from './Coffee';
+import {useState} from 'react';
 
 const Coffees = () => {
-    const coffees = useLoaderData();
+    const loadedCoffees = useLoaderData();
+    const [coffees, setCoffees] = useState(loadedCoffees);
 
     return (
         <section>
@@ -21,7 +23,12 @@ const Coffees = () => {
 
                 <div className="my-10 grid md:grid-cols-2 gap-6">
                     {coffees.map((coffee) => (
-                        <Coffee key={coffee._id} coffee={coffee} />
+                        <Coffee
+                            key={coffee._id}
+                            coffee={coffee}
+                            setCoffees={setCoffees}
+                            coffees={coffees}
+                        />
                     ))}
                 </div>
             </div>

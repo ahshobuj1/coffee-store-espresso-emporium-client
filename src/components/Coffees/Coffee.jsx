@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'; // ES6
 import Swal from 'sweetalert2';
 
-const Coffee = ({coffee}) => {
+const Coffee = ({coffee, coffees, setCoffees}) => {
     const {_id, name, chef, taste, category, details, photo} = coffee;
 
     const handleDeleteCoffee = (id) => {
@@ -16,13 +16,28 @@ const Coffee = ({coffee}) => {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: 'Deleted!',
-                    text: 'Your file has been deleted.',
-                    icon: 'success',
-                });
-
                 console.log('delete', id);
+
+                fetch(`http://localhost:5000/coffees/${id}`, {
+                    method: 'DELETE',
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Your file has been deleted.',
+                                icon: 'success',
+                            });
+
+                            const remaining = coffees.filter(
+                                (cof) => cof._id !== id
+                            );
+
+                            setCoffees(remaining);
+                        }
+                    });
             }
         });
     };
@@ -57,4 +72,6 @@ export default Coffee;
 
 Coffee.propTypes = {
     coffee: PropTypes.object,
+    coffees: PropTypes.array,
+    setCoffees: PropTypes.func,
 };
