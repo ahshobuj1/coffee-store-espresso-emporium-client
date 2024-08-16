@@ -57,7 +57,9 @@ const Coffee = ({coffee, coffees, setCoffees}) => {
             </div>
 
             <div className="flex flex-col px-16 gap-1">
-                <button className="btn bg-[#D2B48C]">View</button>
+                <Link to={`/view/${_id}`}>
+                    <button className="btn bg-[#D2B48C] px-2">View</button>
+                </Link>
 
                 <Link to={`/update/${_id}`}>
                     <button className="btn btn-neutral px-3">Edit</button>
@@ -65,7 +67,7 @@ const Coffee = ({coffee, coffees, setCoffees}) => {
 
                 <button
                     onClick={() => handleDeleteCoffee(_id)}
-                    className="btn bg-[#EA4744]">
+                    className="btn bg-[#EA4744] px-3">
                     Del
                 </button>
             </div>
