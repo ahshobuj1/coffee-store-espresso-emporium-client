@@ -1,7 +1,32 @@
 import PropTypes from 'prop-types'; // ES6
+import Swal from 'sweetalert2';
 
 const Coffee = ({coffee}) => {
-    const {name, chef, taste, category, details, photo} = coffee;
+    const {_id, name, chef, taste, category, details, photo} = coffee;
+
+    const handleDeleteCoffee = (id) => {
+        // A confirm dialog, with a function attached to the "Confirm"-button
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Deleted!',
+                    text: 'Your file has been deleted.',
+                    icon: 'success',
+                });
+
+                console.log('delete', id);
+            }
+        });
+    };
+
     return (
         <div className="grid md:grid-cols-3 shadow-xl justify-between p-7 bg-[#F5F4F1] gap-5 rounded-lg">
             <figure>
@@ -18,7 +43,11 @@ const Coffee = ({coffee}) => {
             <div className="flex flex-col px-16 gap-1">
                 <button className="btn bg-[#D2B48C]">View</button>
                 <button className="btn btn-neutral">Edit</button>
-                <button className="btn bg-[#EA4744]">Del</button>
+                <button
+                    onClick={() => handleDeleteCoffee(_id)}
+                    className="btn bg-[#EA4744]">
+                    Del
+                </button>
             </div>
         </div>
     );
