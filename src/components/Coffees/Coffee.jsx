@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'; // ES6
+import {Link} from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Coffee = ({coffee, coffees, setCoffees}) => {
@@ -57,7 +58,11 @@ const Coffee = ({coffee, coffees, setCoffees}) => {
 
             <div className="flex flex-col px-16 gap-1">
                 <button className="btn bg-[#D2B48C]">View</button>
-                <button className="btn btn-neutral">Edit</button>
+
+                <Link to={`/update/${_id}`}>
+                    <button className="btn btn-neutral px-3">Edit</button>
+                </Link>
+
                 <button
                     onClick={() => handleDeleteCoffee(_id)}
                     className="btn bg-[#EA4744]">
