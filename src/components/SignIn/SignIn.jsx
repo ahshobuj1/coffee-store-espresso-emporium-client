@@ -1,9 +1,12 @@
 import {useContext} from 'react';
 import {AuthContext} from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const SignIn = () => {
     const {signInUserWithEmail} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const handleFormValue = (e) => {
         e.preventDefault();
@@ -32,7 +35,10 @@ const SignIn = () => {
                             text: 'User logged in successfully',
                             icon: 'success',
                         });
+
                         form.reset();
+                        navigate(location.state ? location.state : '/');
+                        console.log(location);
                     });
             })
             .catch((err) => console.log(err.message));
