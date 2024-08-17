@@ -19,6 +19,9 @@ function App() {
                 <NavLink to="/signin" className="btn  btn-sm btn-secondary">
                     Sign in
                 </NavLink>
+                <NavLink to="/view-users" className="btn  btn-sm btn-secondary">
+                    View users
+                </NavLink>
             </div>
             <Outlet />
         </div>

@@ -11,7 +11,6 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
-        const user = {email, password};
 
         signUpWithEmail(email, password)
             .then((result) => {
@@ -20,7 +19,11 @@ const SignUp = () => {
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {'content-type': 'application/json'},
-                    body: JSON.stringify(user),
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        creationTime: result.user?.metadata?.creationTime,
+                    }),
                 })
                     .then((res) => res.json())
                     .then((data) => {
