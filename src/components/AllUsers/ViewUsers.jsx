@@ -8,8 +8,6 @@ const ViewUsers = () => {
 
     return (
         <div>
-            <h1>ViewUsers : {users.length}</h1>
-
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

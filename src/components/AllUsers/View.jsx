@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'; // ES6
 import Swal from 'sweetalert2';
 
 const View = ({user, setUsers, users}) => {
-    const {_id, email, creationTime} = user;
+    const {_id, email, creationTime, lastSignInTime} = user;
 
     const handleDeleteUser = (id) => {
         console.log('delete', id);
@@ -56,7 +56,7 @@ const View = ({user, setUsers, users}) => {
                     </div>
                 </td>
                 <td>{creationTime}</td>
-                <td>Last signIn </td>
+                <td>{lastSignInTime ? lastSignInTime : ''} </td>
                 <th>
                     <button
                         onClick={() => handleDeleteUser(_id)}
