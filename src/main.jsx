@@ -7,6 +7,9 @@ import Update from './components/Update/Update';
 import AddCoffee from './components/AddCoffee/AddCoffee';
 import Coffees from './components/Coffees/Coffees';
 import View from './components/View/View';
+import AuthProvider from './Providers/AuthProvider';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 
 const router = createBrowserRouter([
     {
@@ -34,12 +37,22 @@ const router = createBrowserRouter([
                 loader: ({params}) =>
                     fetch(`http://localhost:5000/coffees/${params.id}`),
             },
+            {
+                path: '/signin',
+                element: <SignIn />,
+            },
+            {
+                path: '/signup',
+                element: <SignUp />,
+            },
         ],
     },
 ]);
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
     </StrictMode>
 );

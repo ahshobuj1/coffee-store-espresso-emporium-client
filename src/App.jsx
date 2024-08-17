@@ -11,6 +11,14 @@ function App() {
                 <NavLink to="/add-coffee" className="btn  btn-sm btn-secondary">
                     Add Coffee
                 </NavLink>
+
+                <NavLink to="/signup" className="btn  btn-sm btn-secondary">
+                    Sign up
+                </NavLink>
+
+                <NavLink to="/signin" className="btn  btn-sm btn-secondary">
+                    Sign in
+                </NavLink>
             </div>
             <Outlet />
         </div>
