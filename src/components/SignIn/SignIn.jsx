@@ -19,14 +19,18 @@ const SignIn = () => {
             .then((result) => {
                 console.log('user logged in', result.user);
 
-                fetch(`http://localhost:5000/users/${email}`, {
-                    method: 'PATCH',
-                    headers: {'content-type': 'application/json'},
-                    body: JSON.stringify({
-                        email: email,
-                        lastSignInTime: result.user?.metadata?.lastSignInTime,
-                    }),
-                })
+                fetch(
+                    `https://coffee-store-espresso-emporium-server-one.vercel.app/users/${email}`,
+                    {
+                        method: 'PATCH',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify({
+                            email: email,
+                            lastSignInTime:
+                                result.user?.metadata?.lastSignInTime,
+                        }),
+                    }
+                )
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);

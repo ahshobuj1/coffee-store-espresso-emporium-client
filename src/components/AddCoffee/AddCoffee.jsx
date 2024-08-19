@@ -23,11 +23,14 @@ const AddCoffee = () => {
         };
         console.log(newCoffeeUpdate);
 
-        fetch('http://localhost:5000/coffees', {
-            method: 'POST',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify(newCoffeeUpdate),
-        })
+        fetch(
+            'https://coffee-store-espresso-emporium-server-one.vercel.app/coffees',
+            {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(newCoffeeUpdate),
+            }
+        )
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

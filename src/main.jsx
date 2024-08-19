@@ -21,13 +21,14 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Coffees />,
-                loader: () => fetch('http://localhost:5000/coffees'),
             },
             {
                 path: '/update/:id',
                 element: <Update />,
                 loader: ({params}) =>
-                    fetch(`http://localhost:5000/coffees/${params.id}`),
+                    fetch(
+                        `https://coffee-store-espresso-emporium-server-one.vercel.app/coffees/${params.id}`
+                    ),
             },
             {
                 path: '/add-coffee',
@@ -37,7 +38,9 @@ const router = createBrowserRouter([
                 path: '/view/:id',
                 element: <View />,
                 loader: ({params}) =>
-                    fetch(`http://localhost:5000/coffees/${params.id}`),
+                    fetch(
+                        `https://coffee-store-espresso-emporium-server-one.vercel.app/coffees/${params.id}`
+                    ),
             },
             {
                 path: '/signin',
@@ -54,7 +57,10 @@ const router = createBrowserRouter([
                         <ViewUsers />
                     </ProtectedRoute>
                 ),
-                loader: () => fetch('http://localhost:5000/users'),
+                loader: () =>
+                    fetch(
+                        'https://coffee-store-espresso-emporium-server-one.vercel.app/users'
+                    ),
             },
         ],
     },

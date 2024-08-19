@@ -1,10 +1,17 @@
-import {Link, useLoaderData} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Coffee from './Coffee';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const Coffees = () => {
-    const loadedCoffees = useLoaderData();
-    const [coffees, setCoffees] = useState(loadedCoffees);
+    const [coffees, setCoffees] = useState([]);
+    useEffect(() => {
+        fetch(
+            'https://coffee-store-espresso-emporium-server-one.vercel.app/coffees'
+        )
+            .then((res) => res.json())
+            .then((data) => setCoffees(data))
+            .catch((err) => console.log(err.message));
+    }, []);
 
     return (
         <section>

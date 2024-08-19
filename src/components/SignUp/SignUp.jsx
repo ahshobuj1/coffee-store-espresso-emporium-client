@@ -16,15 +16,18 @@ const SignUp = () => {
             .then((result) => {
                 console.log('user created', result.user);
 
-                fetch('http://localhost:5000/users', {
-                    method: 'POST',
-                    headers: {'content-type': 'application/json'},
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                        creationTime: result.user?.metadata?.creationTime,
-                    }),
-                })
+                fetch(
+                    'https://coffee-store-espresso-emporium-server-one.vercel.app/users',
+                    {
+                        method: 'POST',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify({
+                            email: email,
+                            password: password,
+                            creationTime: result.user?.metadata?.creationTime,
+                        }),
+                    }
+                )
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.insertedId) {

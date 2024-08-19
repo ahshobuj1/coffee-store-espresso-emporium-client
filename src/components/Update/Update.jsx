@@ -36,11 +36,14 @@ const Update = () => {
             confirmButtonText: 'Yes, Update it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/coffees/${_id}`, {
-                    method: 'PUT',
-                    headers: {'content-type': 'application/json'},
-                    body: JSON.stringify(newCoffeeUpdate),
-                })
+                fetch(
+                    `https://coffee-store-espresso-emporium-server-one.vercel.app/coffees/${_id}`,
+                    {
+                        method: 'PUT',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify(newCoffeeUpdate),
+                    }
+                )
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);
